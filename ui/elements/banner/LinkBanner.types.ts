@@ -1,6 +1,11 @@
-import React, { HTMLAttributes, MouseEvent } from "react";
+import React, { HTMLAttributes, ClassAttributes } from "react";
 
-export interface ILinkBanner extends HTMLAttributes<HTMLAnchorElement> {
+export interface ILinkBanner {
+  /** wrapper */
+  anchorProps?:
+    | HTMLAttributes<HTMLAnchorElement>
+    | ClassAttributes<HTMLAnchorElement>;
+
   /** 배너 메인 타이틀 */
   bannerTitle?: string;
 
@@ -21,7 +26,4 @@ export interface ILinkBanner extends HTMLAttributes<HTMLAnchorElement> {
 
   /** 배너 이미지 경로 */
   bannerImgUrl: string;
-
-  /** 배너 클릭 이벤트 */
-  onBannerClick: (e: MouseEvent<HTMLAnchorElement>) => void;
 }

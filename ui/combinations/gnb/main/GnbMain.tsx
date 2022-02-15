@@ -11,21 +11,29 @@ import { IGnbMain } from "./GnbMain.types";
 import { Icon } from "@/ui/elements/icon";
 
 export const GnbMain = ({
+  wrapperProps,
+  height = "6rem",
   gnbIcons = [
     {
       iconTitle: "나의계약",
       iconName: "mycontract",
-      iconEvent: () => console.log("mycontract!"),
+      iconAnchorProps: {
+        onClick: () => console.log("mycontract!"),
+      },
     },
     {
       iconTitle: "상품찾기",
       iconName: "products",
-      iconEvent: () => console.log("products!"),
+      iconAnchorProps: {
+        onClick: () => console.log("products!"),
+      },
     },
     {
       iconTitle: "전체메뉴",
       iconName: "menu",
-      iconEvent: () => console.log("menu!"),
+      iconAnchorProps: {
+        onClick: () => console.log("menu!"),
+      },
     },
   ],
 }: IGnbMain) => {
@@ -33,12 +41,12 @@ export const GnbMain = ({
 
   return (
     <>
-      <div style={{ height: "6rem" }}></div>
-      <GnbNav>
+      <div style={{ height }}></div>
+      <GnbNav {...wrapperProps}>
         <GnbWrapper>
-          {gnbIcons.map(({ iconTitle, iconName, iconEvent }) => (
+          {gnbIcons.map(({ iconTitle, iconName, iconAnchorProps }) => (
             <GnbItem key={iconTitle}>
-              <GnbLink href="#" onClick={iconEvent}>
+              <GnbLink href="#" height="6rem" {...iconAnchorProps}>
                 <Icon
                   className={`${
                     router.pathname.substring(1) === iconName

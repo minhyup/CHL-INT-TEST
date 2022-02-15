@@ -1,6 +1,16 @@
-import { MouseEvent } from "react";
+import { HTMLAttributes, ClassAttributes } from "react";
 
 export interface INoticeStatus {
+  /** wrapper */
+  wrapperProps?:
+    | HTMLAttributes<HTMLDivElement>
+    | ClassAttributes<HTMLDivElement>;
+
+  /** 앵커 props(앵커, ref) */
+  anchorProps?:
+    | HTMLAttributes<HTMLAnchorElement>
+    | ClassAttributes<HTMLAnchorElement>;
+
   /** 타이틀 */
   title?: string;
 
@@ -9,7 +19,4 @@ export interface INoticeStatus {
 
   /** 사고접수 단계 */
   step?: Array<{ stepName: string; stepPoint: boolean }>;
-
-  /** 사고접수 클릭 */
-  onLinkClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }

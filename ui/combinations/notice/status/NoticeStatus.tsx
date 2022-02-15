@@ -9,14 +9,15 @@ import {
 } from "./NoticeStatus.styled";
 
 export const NoticeStatus = ({
+  wrapperProps,
+  anchorProps,
   title,
   noticeMsg,
   step,
-  onLinkClick,
 }: INoticeStatus) => {
   return (
-    <NoticeStatusWrapper className="mb-40">
-      <NoticeLink href="#" onClick={onLinkClick}>
+    <NoticeStatusWrapper className="mb-40" {...wrapperProps}>
+      <NoticeLink href="#" {...anchorProps}>
         <Icon className="notice" />
         <NoticeTitle>{title}</NoticeTitle>
         <NoticeStep>

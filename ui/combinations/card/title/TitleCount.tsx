@@ -8,20 +8,21 @@ import {
 import { ITitleCount } from "./TitleCount.types";
 
 export const TitleCount = ({
+  wrapperProps,
+  exAnchorProps,
   mainTotalTitle,
   mainTotal,
-  onMainExLinkClick,
-  ...rest
+  exLinkTitle,
 }: ITitleCount) => {
   return (
-    <CardTitleWrapper className="mb-12" {...rest}>
+    <CardTitleWrapper className="mb-12" {...wrapperProps}>
       <CardTitle>
         {mainTotalTitle}
         <CardTotal>{mainTotal}</CardTotal>
       </CardTitle>
-      {onMainExLinkClick && (
-        <CardTitleLink href="#" onClick={onMainExLinkClick}>
-          타사보험조회
+      {exLinkTitle && (
+        <CardTitleLink href="#" {...exAnchorProps}>
+          {exLinkTitle}
         </CardTitleLink>
       )}
     </CardTitleWrapper>

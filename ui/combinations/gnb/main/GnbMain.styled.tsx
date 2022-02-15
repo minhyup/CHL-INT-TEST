@@ -14,12 +14,12 @@ export const GnbWrapper = styled.ul`
 export const GnbItem = styled.li`
   flex-grow: 1;
 `;
-export const GnbLink = styled.a`
+export const GnbLink = styled.a<{ height: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 6rem;
+  height: ${({ height }) => height};
 `;
 export const GnbIcon = styled.img``;
 

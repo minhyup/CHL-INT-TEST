@@ -1,8 +1,14 @@
-import { MouseEvent, HTMLAttributes } from "react";
+import { MouseEvent, HTMLAttributes, ClassAttributes } from "react";
 
-export interface IHeaderMain extends HTMLAttributes<HTMLHeadingElement> {
+export interface IHeaderMain {
+  /** wrapper */
+  wrapperProps?:
+    | HTMLAttributes<HTMLHeadingElement>
+    | ClassAttributes<HTMLHeadingElement>;
+
   headerIcons?: Array<{
-    iconName: string;
-    iconEvent: (e?: MouseEvent<HTMLImageElement>) => void;
+    iconProps?:
+      | HTMLAttributes<HTMLImageElement>
+      | ClassAttributes<HTMLImageElement>;
   }>;
 }

@@ -14,14 +14,17 @@ export const LyMainGnb = ({
   padding,
   bgColor,
   headerIcons = [
-    { iconName: "bell", iconEvent: () => console.log("bell") },
-    { iconName: "help", iconEvent: () => console.log("help") },
+    { iconProps: { className: "bell", onClick: () => console.log("bell") } },
+    { iconProps: { className: "help", onClick: () => console.log("help") } },
   ],
 }: IMainGnb) => {
   return (
     <>
       <PaddingContainer padding={padding} bgColor={bgColor}>
-        <HeaderMain className="mb-8" headerIcons={headerIcons} />
+        <HeaderMain
+          wrapperProps={{ className: "mb-8" }}
+          headerIcons={headerIcons}
+        />
         {children}
         <GnbMain />
       </PaddingContainer>

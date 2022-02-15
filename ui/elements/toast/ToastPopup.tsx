@@ -2,9 +2,9 @@ import React from "react";
 import { ToastWrapper, ToastMessage } from "./ToastPopup.styled";
 import { IToastPopup } from "./ToastPopup.types";
 
-export const ToastPopup = ({ toastMsg }: IToastPopup) => {
+export const ToastPopup = ({ wrapperProps, toastMsg }: IToastPopup) => {
   return (
-    <ToastWrapper>
+    <ToastWrapper {...wrapperProps}>
       <ToastMessage>{toastMsg}</ToastMessage>
     </ToastWrapper>
   );

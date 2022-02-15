@@ -17,27 +17,27 @@ import {
 import { ICardContract } from "./CardContract.types";
 
 export const CardContract = ({
+  wrapperProps,
+  mainAnchorProps,
   mainTitle,
   mainLinkName,
-  onMainLinkClick,
   cardList,
   btnGrp,
-  ...rest
 }: ICardContract) => {
   return (
     <>
-      <CardMainWrapper className="mb-20" {...rest}>
+      <CardMainWrapper className="mb-20" {...wrapperProps}>
         <CardMainTitle>{mainTitle}</CardMainTitle>
-        <CardMainLink href="#" onClick={onMainLinkClick}>
+        <CardMainLink href="#" className="test" {...mainAnchorProps}>
           <CardMainDesc>{mainLinkName}</CardMainDesc>
           <Icon className="arrow" />
         </CardMainLink>
         {cardList && (
           <CardListWrapper>
             {cardList.map(
-              ({ itemName, itemTag, itemDesc, onItemClick }, index) => (
+              ({ itemName, itemTag, itemDesc, itemAnchorProps }, index) => (
                 <li key={`${itemName}-${index}`}>
-                  <CardListItem href="#" onClick={onItemClick}>
+                  <CardListItem href="#" {...itemAnchorProps}>
                     <CardListRow>
                       <CardListRowTitle>{itemName}</CardListRowTitle>
                       {itemTag && (
@@ -55,13 +55,13 @@ export const CardContract = ({
 
         {btnGrp && (
           <ButtonGroup className="mt-16">
-            {btnGrp.map(({ btnName, btnPrmy, onBtnClick }) => {
+            {btnGrp.map(({ btnName, btnPrmy, btnProps }) => {
               return (
                 <Button
                   key={btnName}
                   href="#"
                   type={btnPrmy ? "primary" : "secondary"}
-                  onClick={onBtnClick}
+                  {...btnProps}
                 >
                   {btnName}
                 </Button>

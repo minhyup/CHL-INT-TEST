@@ -11,6 +11,7 @@ import {
 import { ILinkBanner } from "./LinkBanner.types";
 
 export const LinkBanner = ({
+  anchorProps,
   bannerTitle,
   bannerSubtitle,
   arrowMsg,
@@ -18,16 +19,9 @@ export const LinkBanner = ({
   bannerImgWidth,
   bannerImgHeight,
   bannerImgUrl,
-  onBannerClick,
-  ...rest
 }: ILinkBanner) => {
   return (
-    <LinkBannerWrapper
-      href="#"
-      height={bannerHeight}
-      onClick={onBannerClick}
-      {...rest}
-    >
+    <LinkBannerWrapper href="#" height={bannerHeight} {...anchorProps}>
       <LinkBannerDescWrapper>
         {bannerTitle && <LinkBannerTitle>{bannerTitle}</LinkBannerTitle>}
         {bannerSubtitle && <LinkBannerEmp>{bannerSubtitle}</LinkBannerEmp>}

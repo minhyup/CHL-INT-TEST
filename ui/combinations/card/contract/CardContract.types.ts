@@ -1,14 +1,20 @@
-import { HTMLAttributes, MouseEvent } from "react";
+import { ClassAttributes, HTMLAttributes, MouseEvent } from "react";
 
-export interface ICardContract extends HTMLAttributes<HTMLDivElement> {
+export interface ICardContract {
+  /** wrapper */
+  wrapperProps?:
+    | HTMLAttributes<HTMLDivElement>
+    | ClassAttributes<HTMLDivElement>;
+
+  /** 메인앵커 props */
+  mainAnchorProps?:
+    | HTMLAttributes<HTMLAnchorElement>
+    | ClassAttributes<HTMLAnchorElement>;
   /** 카드 메인 타이틀 */
   mainTitle?: string;
 
   /** 카드 링크 이름 */
   mainLinkName?: string;
-
-  /** 카드 링크 클릭 이벤트 */
-  onMainLinkClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 
   /** 카드 리스트 */
   cardList?: Array<{
@@ -21,16 +27,21 @@ export interface ICardContract extends HTMLAttributes<HTMLDivElement> {
     /** 아이템 추가 설명 */
     itemDesc?: string;
 
-    /** 아이템 클릭 이벤트 */
-    onItemClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+    itemAnchorProps?:
+      | HTMLAttributes<HTMLAnchorElement>
+      | ClassAttributes<HTMLAnchorElement>;
   }>;
   /** 버튼 그룹 */
   btnGrp?: Array<{
     /** 버튼이름 */
     btnName?: string;
+
     /** primary */
     btnPrmy?: boolean;
-    /** 버튼 이벤트 */
-    onBtnClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+
+    /** 버튼 props */
+    btnProps?:
+      | HTMLAttributes<HTMLAnchorElement>
+      | ClassAttributes<HTMLAnchorElement>;
   }>;
 }
