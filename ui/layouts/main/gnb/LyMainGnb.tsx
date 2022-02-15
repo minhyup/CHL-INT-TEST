@@ -2,7 +2,7 @@ import React from "react";
 import { PaddingContainer } from "./LyMainGnb.styled";
 import { HeaderMain } from "@/ui/combinations/header";
 import { GnbMain } from "@/ui/combinations/gnb";
-import { IMainGnb } from "./LyMainGnb.types";
+import { ILyMainGnb } from "./LyMainGnb.types";
 
 /**
  * 메인 탭 레이아웃입니다.
@@ -17,7 +17,7 @@ export const LyMainGnb = ({
     { iconProps: { className: "bell", onClick: () => console.log("bell") } },
     { iconProps: { className: "help", onClick: () => console.log("help") } },
   ],
-}: IMainGnb) => {
+}: ILyMainGnb) => {
   return (
     <>
       <PaddingContainer padding={padding} bgColor={bgColor}>

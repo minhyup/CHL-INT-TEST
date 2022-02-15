@@ -5,3 +5,5 @@ export const Sample = styled.div`
   height: 100px;
   background-color: red;
 `;
+
+export const Section = styled.div``;

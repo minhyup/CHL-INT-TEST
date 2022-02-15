@@ -19,17 +19,5 @@ export interface IGnbMain {
     iconAnchorProps?:
       | HTMLAttributes<HTMLAnchorElement>
       | ClassAttributes<HTMLAnchorElement>;
-
-    // headerIcons?: Array<{
-    //   iconProps?:
-    //     | HTMLAttributes<HTMLImageElement>
-    //     | ClassAttributes<HTMLImageElement>;
-    // }>;
-
-    /** 아이콘 이름 */
-    // iconName: string;
-
-    /** 아이콘 클릭 이벤트 */
-    //iconEvent: (e?: MouseEvent<HTMLAnchorElement>) => void;
   }>;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { IImage } from "./Icon.types";
+import { IIcon } from "./Icon.types";
 import { IconImg } from "./Icon.styled";
 
 /**
@@ -7,6 +7,6 @@ import { IconImg } from "./Icon.styled";
  * @param param0
  * @returns
  */
-export const Icon = (props: IImage) => {
+export const Icon = (props: IIcon) => {
   return <IconImg alt={props.className} {...props} />;
 };

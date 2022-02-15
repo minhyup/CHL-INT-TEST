@@ -1,21 +1,18 @@
 import React, { useRef } from "react";
-import Head from "next/head";
-import { LinkBanner } from "@/ui/elements/banner";
-import { ToastPopup } from "@/ui/elements/toast";
-import { LyMainGnb } from "@/ui/layouts/main";
-import { NoticeStatus } from "@/ui/combinations/notice";
-import { CardContract } from "@/ui/combinations/card";
-import { TitleCount } from "@/ui/combinations/card";
+import { ComponentStory } from "@storybook/react";
 
-export default function MyContractPage(): React.ReactElement {
+import { LinkBanner } from "../../elements/banner";
+import { ToastPopup } from "../../elements/toast";
+import { LyMainGnb } from "../../layouts/main";
+import { NoticeStatus } from "../../combinations/notice";
+import { CardContract } from "../../combinations/card";
+import { TitleCount } from "../../combinations/card";
+import { Section } from "../../styles/css/commons/Sample.styled";
+
+const Page = () => {
   const noticeStatusRef = useRef<HTMLAnchorElement>(null);
-
   return (
     <>
-      <Head>
-        <title>나의 계약</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <LyMainGnb>
         <>
           <NoticeStatus
@@ -36,7 +33,7 @@ export default function MyContractPage(): React.ReactElement {
             ]}
           />
 
-          <section className="mb-40">
+          <Section className="mb-40">
             <TitleCount
               mainTotalTitle="보험"
               mainTotal={"3"}
@@ -102,8 +99,8 @@ export default function MyContractPage(): React.ReactElement {
                 },
               }}
             />
-          </section>
-          <section>
+          </Section>
+          <Section>
             <TitleCount mainTotalTitle="대출" mainTotal="6" />
             <LinkBanner
               anchorProps={{
@@ -170,10 +167,26 @@ export default function MyContractPage(): React.ReactElement {
                 },
               ]}
             />
-          </section>
+          </Section>
         </>
       </LyMainGnb>
       <ToastPopup toastMsg="김한화님, 반갑습니다." />
     </>
   );
-}
+};
+export default {
+  title: "Pages/나의계약",
+  component: Page,
+  parameters: {
+    nextRouter: {
+      pathname: "/mycontract",
+    },
+  },
+};
+
+const Template: ComponentStory<typeof Page> = (): React.ReactElement => {
+  return <Page />;
+};
+
+export const StoryJsx = Template.bind({});
+StoryJsx.storyName = "기본";
