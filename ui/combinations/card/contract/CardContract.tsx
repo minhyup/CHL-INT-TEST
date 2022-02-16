@@ -26,7 +26,7 @@ export const CardContract = ({
 }: ICardContract) => {
   return (
     <>
-      <CardMainWrapper className="mb-20" {...wrapperProps}>
+      <CardMainWrapper {...wrapperProps}>
         <CardMainTitle>{mainTitle}</CardMainTitle>
         <CardMainLink href="#" className="test" {...mainAnchorProps}>
           <CardMainDesc>{mainLinkName}</CardMainDesc>

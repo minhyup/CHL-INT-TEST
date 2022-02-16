@@ -16,7 +16,7 @@ export const NoticeStatus = ({
   step,
 }: INoticeStatus) => {
   return (
-    <NoticeStatusWrapper className="mb-40" {...wrapperProps}>
+    <NoticeStatusWrapper {...wrapperProps}>
       <NoticeLink href="#" {...anchorProps}>
         <Icon className="notice" />
         <NoticeTitle>{title}</NoticeTitle>

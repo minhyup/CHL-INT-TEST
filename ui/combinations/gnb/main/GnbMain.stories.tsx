@@ -1,10 +1,18 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { ComponentStory } from "@storybook/react";
+import {
+  GnbNav,
+  GnbWrapper,
+  GnbItem,
+  GnbLink,
+  GnbTitle,
+} from "./GnbMain.styled";
+import { Icon } from "@/ui/elements/icon";
 import { GnbMain } from "./GnbMain";
 import { IGnbMain } from "./GnbMain.types";
 
 export default {
-  title: "Combinations/GNB-메인",
+  title: "Combinations/GNB/메인",
   component: GnbMain,
   parameters: {
     nextRouter: {
@@ -52,4 +60,39 @@ StoryJsx.args = {
       },
     },
   ],
+};
+
+/**
+ * 메인 하단 GNB
+ * @returns
+ */
+export const VGnbMain1 = (props: HTMLAttributes<HTMLElement>) => {
+  return (
+    // 메인 하단 GNB
+    <>
+      <div style={{ height: "6rem" }}></div>
+      <GnbNav {...props}>
+        <GnbWrapper>
+          <GnbItem>
+            <GnbLink href="#" height="6rem">
+              <Icon className="mycontract-active" />
+              <GnbTitle>나의계약</GnbTitle>
+            </GnbLink>
+          </GnbItem>
+          <GnbItem>
+            <GnbLink href="#" height="6rem">
+              <Icon className="products" />
+              <GnbTitle>상품찾기</GnbTitle>
+            </GnbLink>
+          </GnbItem>
+          <GnbItem>
+            <GnbLink href="#" height="6rem">
+              <Icon className="menu" />
+              <GnbTitle>전체메뉴</GnbTitle>
+            </GnbLink>
+          </GnbItem>
+        </GnbWrapper>
+      </GnbNav>
+    </>
+  );
 };

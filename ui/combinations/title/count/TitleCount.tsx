@@ -15,7 +15,7 @@ export const TitleCount = ({
   exLinkTitle,
 }: ITitleCount) => {
   return (
-    <CardTitleWrapper className="mb-12" {...wrapperProps}>
+    <CardTitleWrapper {...wrapperProps}>
       <CardTitle>
         {mainTotalTitle}
         <CardTotal>{mainTotal}</CardTotal>

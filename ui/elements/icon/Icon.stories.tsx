@@ -5,7 +5,7 @@ import { Icon } from "./Icon";
 import { IIcon } from "./Icon.types";
 
 export default {
-  title: "Elements/아이콘",
+  title: "Elements/이미지/아이콘",
   component: Icon,
   parameters: {
     nextRouter: {

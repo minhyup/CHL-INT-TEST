@@ -1,10 +1,25 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { ComponentStory } from "@storybook/react";
+import { Icon } from "@/ui/elements/icon";
+import {
+  CardMainWrapper,
+  CardMainTitle,
+  CardMainDesc,
+  CardMainLink,
+  CardListWrapper,
+  CardListItem,
+  CardListRow,
+  CardListRowTitle,
+  CardListRowStatus,
+  CardListDesc,
+  ButtonGroup,
+  Button,
+} from "./CardContract.styled";
 import { CardContract } from "./CardContract";
 import { ICardContract } from "./CardContract.types";
 
 export default {
-  title: "Combinations/카드-계약",
+  title: "Combinations/카드/계약",
   component: CardContract,
   parameters: {
     nextRouter: {
@@ -71,4 +86,78 @@ StoryJsx.args = {
       },
     },
   ],
+};
+
+/**
+ * 나의 계약 카드
+ */
+export const VCardContract1 = (props: HTMLAttributes<HTMLElement>) => {
+  return (
+    // 나의 계약 카드
+    <CardMainWrapper {...props}>
+      <CardMainTitle>타이틀</CardMainTitle>
+      <CardMainLink href="#">
+        <CardMainDesc>링크명</CardMainDesc>
+        <Icon className="arrow" />
+      </CardMainLink>
+      <CardListWrapper>
+        <li>
+          <CardListItem href="#">
+            <CardListRow>
+              <CardListRowTitle>타이틀</CardListRowTitle>
+              <CardListRowStatus>완납</CardListRowStatus>
+              <Icon className="arrow" />
+            </CardListRow>
+            <CardListDesc>일시납</CardListDesc>
+          </CardListItem>
+        </li>
+        <li>
+          <CardListItem href="#">
+            <CardListRow>
+              <CardListRowTitle>타이틀</CardListRowTitle>
+              <CardListRowStatus>완납</CardListRowStatus>
+              <Icon className="arrow" />
+            </CardListRow>
+            <CardListDesc>일시납</CardListDesc>
+          </CardListItem>
+        </li>
+      </CardListWrapper>
+      <ButtonGroup className="mt-16">
+        <Button href="#" type={"secondary"}>
+          버튼명
+        </Button>
+        <Button href="#" type={"primary"}>
+          버튼명
+        </Button>
+      </ButtonGroup>
+    </CardMainWrapper>
+  );
+};
+
+/**
+ *  계약 카드 (버튼 그룹이 없는 경우)
+ */
+export const VCardContract2 = (props: HTMLAttributes<HTMLElement>) => {
+  return (
+    // 계약 카드 (버튼 그룹이 없는 경우)
+    <CardMainWrapper {...props}>
+      <CardMainTitle>타이틀</CardMainTitle>
+      <CardMainLink href="#">
+        <CardMainDesc>링크명</CardMainDesc>
+        <Icon className="arrow" />
+      </CardMainLink>
+      <CardListWrapper>
+        <li>
+          <CardListItem href="#">
+            <CardListRow>
+              <CardListRowTitle>타이틀</CardListRowTitle>
+              <CardListRowStatus>완납</CardListRowStatus>
+              <Icon className="arrow" />
+            </CardListRow>
+            <CardListDesc>일시납</CardListDesc>
+          </CardListItem>
+        </li>
+      </CardListWrapper>
+    </CardMainWrapper>
+  );
 };
