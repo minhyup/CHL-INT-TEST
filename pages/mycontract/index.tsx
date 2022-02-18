@@ -1,14 +1,66 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Head from "next/head";
+import { useBridge } from "@/native/bridge";
+import { useBridgeCommon } from "@/native/common";
+import { useBridgeWallet } from "@/native/wallet";
 import { LinkBanner } from "@/ui/elements/banner";
 import { ToastPopup } from "@/ui/elements/toast";
 import { LyMainGnb } from "@/ui/layouts/main";
 import { NoticeStatus } from "@/ui/combinations/notice";
 import { CardContract } from "@/ui/combinations/card";
-import { TitleCount } from "@/ui/combinations/card";
+import { TitleCount } from "@/ui/combinations/title";
+import useNative from "@/native";
 
 export default function MyContractPage(): React.ReactElement {
   const noticeStatusRef = useRef<HTMLAnchorElement>(null);
+  const brr = useBridge();
+  const test = useBridgeCommon();
+  const nat = useNative();
+  const wallet = useBridgeWallet();
+
+  // console.log(
+  //   brr?.callNative("aaa", { pluginId: "common", command: "callCertified" })
+  // );
+
+  console.log(wallet.webBack({ reload: "N" }));
+
+  //test.saveData({ key: "aaa", value: { test: "adfadsf" } });
+  const testf = async () => {
+    console.log("1");
+    const res = await test.loadData({ key: "test" });
+    // await brr?.callNative("ddd", {
+    //   pluginId: "common",
+    //   command: "callCertified",
+    // });
+    console.log("2");
+  };
+  testf();
+
+  //  console.log("brrr", brr);
+
+  // brr?.callNative("sss", { pluginId: "common", command: "callCertified" });
+  // console.log("common:", test.loadData());
+  // console.log("NATIVE::", nat.common.loadData());
+
+  // console.log(
+  //   "brrr",
+  //   brr?.callNative("id", { pluginId: "common", command: "callCertified" })
+  // );
+
+  // console.log(
+  //   "br::",
+  //   br?.
+  // );
+  useEffect(() => {
+    //console.log("page!");
+    // console.log(
+    //   "mount::",
+    //   brr?.callNative("id", { pluginId: "common", command: "callCertified" })
+    // );
+  }, []);
+  // console.log("call!", br);
+  // if (br) {
+  // }
 
   return (
     <>
