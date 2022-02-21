@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { platformState } from "@/store/device";
+
 export type PlatformType = "Android" | "iOS" | "Web";
 type TypePluginId = "common" | "wallet";
 type TypeCommand =
@@ -65,6 +68,20 @@ export interface INatvieResponseProps {
   resData: Record<string, unknown> | string;
 }
 
+const getUserAgent = () => {
+  const ua = window.navigator.userAgent;
+  if (ua.indexOf("HANWHALIFE") > -1 || ua.indexOf("HoneMobile") > -1) {
+    if (/android/i.test(ua.toLowerCase())) {
+      return "Android";
+    }
+    if (/iphone|ipad|ipod/i.test(ua.toLowerCase())) {
+      return "iOS";
+    }
+  } else {
+    return "Web";
+  }
+};
+
 // // Deprecated
 // btoa(string)
 // // Buffer equivalent
@@ -76,8 +93,11 @@ interface IBridge {
   ) => Promise<INatvieResponseProps>;
 }
 export const useBridge = () => {
-  const [platform, setPlatform] = useState<PlatformType>("Web");
+  const platform = useRecoilValue(platformState);
+  //console.log("useBridge platform::", platform);
+  //const [platform, setPlatform] = useState<PlatformType>("Web");
   //const { store } = useContext(AppBridgeContext);
+  //const platfrom = getUserAgent();
 
   const NATIVE_BRIDGE = {
     /**
@@ -154,14 +174,17 @@ export const useBridge = () => {
     ): Promise<INatvieResponseProps> {
       return new Promise((resolve, reject) => {
         try {
+          //const platform = getUserAgent();
+
           // 콜백 생성
           this.makeCallback(callbackId, resolve, reject);
 
           const enData = this.encodeData(callbackId, params);
 
-          console.log("enData::", callbackId, enData);
+          console.log("enData::", platform, callbackId, enData);
+          console.log("callNative platform::", platform || getUserAgent());
 
-          switch (platform) {
+          switch (platform || getUserAgent()) {
             case "Android":
               this.callAndroid(enData);
               break;

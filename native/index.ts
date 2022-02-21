@@ -23,7 +23,7 @@ import { useBridgeWallet } from "./wallet";
   }, []);
  * @returns useHliNative Hook
  */
-const useHliNative = () => {
+export const useHliNative = () => {
   const common = useBridgeCommon();
   const wallet = useBridgeWallet();
   const native = {
@@ -33,5 +33,3 @@ const useHliNative = () => {
 
   return native;
 };
-
-export default useHliNative;

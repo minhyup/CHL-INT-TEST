@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import Head from "next/head";
 import { useBridge } from "@/native/bridge";
 import { useBridgeCommon } from "@/native/common";
@@ -9,59 +9,73 @@ import { LyMainGnb } from "@/ui/layouts/main";
 import { NoticeStatus } from "@/ui/combinations/notice";
 import { CardContract } from "@/ui/combinations/card";
 import { TitleCount } from "@/ui/combinations/title";
-import useNative from "@/native";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { useHliNative } from "@/native";
+import { platformState } from "@/store/device";
+
+const textState = atom({
+  key: "textState",
+  default: {
+    test: "abcd",
+  },
+});
+
+const Test = () => {
+  console.log("Test");
+  const platform = useRecoilValue(platformState);
+  const native = useHliNative();
+  console.log(native);
+
+  const test = useCallback(async () => {
+    console.log("1");
+    const deviceInfo = await native.wallet.getDeviceInfo();
+    console.log("deviceInfo:::", deviceInfo);
+    console.log("2");
+    const loginInfo = await native.wallet.getLoginInfo();
+    console.log("getLoginInfo:::", loginInfo);
+    console.log("3");
+  }, [native]);
+
+  useEffect(() => {
+    console.log("test!");
+
+    test();
+  }, [test]);
+
+  useEffect(() => {
+    console.log("test mounted");
+  }, []);
+
+  return (
+    <div>
+      <h1>Test 컴포넌트 입니다.== {platform}</h1>
+      <div>
+        <button
+          onClick={() => {
+            test();
+          }}
+        >
+          Test
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default function MyContractPage(): React.ReactElement {
+  console.log("MyContractPage");
+
+  const [test, setTset] = useState("");
   const noticeStatusRef = useRef<HTMLAnchorElement>(null);
-  const brr = useBridge();
-  const test = useBridgeCommon();
-  const nat = useNative();
-  const wallet = useBridgeWallet();
-
-  // console.log(
-  //   brr?.callNative("aaa", { pluginId: "common", command: "callCertified" })
-  // );
-
-  console.log(wallet.webBack({ reload: "N" }));
-
-  //test.saveData({ key: "aaa", value: { test: "adfadsf" } });
-  const testf = async () => {
-    console.log("1");
-    const res = await test.loadData({ key: "test" });
-    // await brr?.callNative("ddd", {
-    //   pluginId: "common",
-    //   command: "callCertified",
-    // });
-    console.log("2");
-  };
-  testf();
-
-  //  console.log("brrr", brr);
-
-  // brr?.callNative("sss", { pluginId: "common", command: "callCertified" });
-  // console.log("common:", test.loadData());
-  // console.log("NATIVE::", nat.common.loadData());
-
-  // console.log(
-  //   "brrr",
-  //   brr?.callNative("id", { pluginId: "common", command: "callCertified" })
-  // );
-
-  // console.log(
-  //   "br::",
-  //   br?.
-  // );
   useEffect(() => {
-    //console.log("page!");
-    // console.log(
-    //   "mount::",
-    //   brr?.callNative("id", { pluginId: "common", command: "callCertified" })
-    // );
+    console.log("page mounted");
   }, []);
-  // console.log("call!", br);
-  // if (br) {
-  // }
-
   return (
     <>
       <Head>
@@ -70,15 +84,18 @@ export default function MyContractPage(): React.ReactElement {
       </Head>
       <LyMainGnb>
         <>
+          <Test />
           <NoticeStatus
             title="사고보험금"
             anchorProps={{
               ref: noticeStatusRef,
-              onClick: (e) =>
+              onClick: (e) => {
+                setTset("aaa");
                 console.log(
                   "사고보험금 클릭::",
                   noticeStatusRef.current?.innerText
-                ),
+                );
+              },
             }}
             step={[
               { stepName: "신청", stepPoint: false },
